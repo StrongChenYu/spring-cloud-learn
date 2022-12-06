@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.csu.excloud.dao.PaymentDao">
+
+    <resultMap id="paymentMap" type="Payment">
+        <result column="id" property="id" javaType="java.lang.Long"/>
+        <result column="serial" property="serial" javaType="java.lang.String"/>
+    </resultMap>
+
+    <select id="queryById" resultMap="paymentMap" parameterType="java.lang.Long">
+        select
+            p.id,
+            p.serial
+        from
+            payment p
+        where
+            id = #{id}
+    </select>
+
+    <insert id="create" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            payment(serial)
+        values
+            (#{serial})
+    </insert>
+</mapper>
